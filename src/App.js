@@ -8,7 +8,6 @@ const { networkId } = getConfig(process.env.NODE_ENV || 'development')
 export default function App() {
   // use React Hooks to store greeting in component state
   const [greeting, set_greeting] = React.useState()
-  const [quote, setQuote] = React.useState('')
   const data = [
     {
       image:
@@ -47,7 +46,6 @@ export default function App() {
   ]
 
   // Add getQuote function
-
 
   // The useEffect hook can be used to fire side-effects during render
   // Learn more: https://reactjs.org/docs/hooks-intro.html
@@ -107,8 +105,6 @@ export default function App() {
         </button>
 
         {/* Add  Quote to be display*/}
-        
-
       </div>
     </div>
   )
