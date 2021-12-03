@@ -46775,7 +46775,7 @@ __exportStar(require("./browser-connect"), exports);
 require("error-polyfill");
 
 },{"./key_stores/browser-index":"../node_modules/near-api-js/lib/key_stores/browser-index.js","./common-index":"../node_modules/near-api-js/lib/common-index.js","./browser-connect":"../node_modules/near-api-js/lib/browser-connect.js","error-polyfill":"../node_modules/error-polyfill/index.js"}],"config.js":[function(require,module,exports) {
-const CONTRACT_NAME = "dev-1638522341195-57150733019172" || 'new-awesome-project.01t.testnet';
+const CONTRACT_NAME = "dev-1638522341195-57150733019172" || 'new-awesome.01t.testnet';
 
 function getConfig(env) {
   switch (env) {
@@ -46993,7 +46993,9 @@ const {
 
 function App() {
   // use React Hooks to store greeting in component state
-  const [quote, set_quote] = _react.default.useState();
+  const [greeting, set_greeting] = _react.default.useState();
+
+  const [quote, setQuote] = _react.default.useState('');
 
   const data = [{
     image: 'https://images.unsplash.com/photo-1494253188410-ff0cdea5499e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
@@ -47015,37 +47017,18 @@ function App() {
     image: 'https://images.unsplash.com/photo-1634945833919-0edbcbf148fa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80',
     quote: "Don't let the noise of others' opinions drown out your own inner voice.",
     author: '- Steve Jobs -'
-  }]; // Add getQuote
-
-  const getQuote = async e => {
-    e.preventDefault();
-    const randomNumb = Math.floor(Math.random() * data.length);
-    const newQuote = data[randomNumb].quote;
-
-    try {
-      // calls  the smart contract with the new quote
-      await window.contract.set_quote({
-        message: newQuote
-      });
-    } catch (e) {
-      alert('Something went wrong! ' + 'Maybe you need to sign out and back in? ' + 'Check your browser console for more info.');
-      throw e;
-    } // update local `quote` variable to match persisted value
-
-
-    set_quote(newQuote);
-  }; // The useEffect hook can be used to fire side-effects during render
+  }]; // Add getQuote function
+  // The useEffect hook can be used to fire side-effects during render
   // Learn more: https://reactjs.org/docs/hooks-intro.html
-
 
   _react.default.useEffect(() => {
     // in this case, we only care to query the contract when signed in
     if (window.walletConnection.isSignedIn()) {
       // window.contract is set by initContract in index.js
-      window.contract.get_quote({
+      window.contract.get_greeting({
         account_id: window.accountId
       }).then(greetingFromContract => {
-        set_quote(greetingFromContract);
+        set_greeting(greetingFromContract);
       });
     }
   }, // The second argument to useEffect tells React when to re-run the effect
@@ -47082,15 +47065,7 @@ function App() {
       color: 'white'
     },
     onClick: _utils.logout
-  }, "Sign out"), /*#__PURE__*/_react.default.createElement("main", null, /*#__PURE__*/_react.default.createElement("h1", null, /*#__PURE__*/_react.default.createElement("label", {
-    htmlFor: "greeting"
-  }, quote)), /*#__PURE__*/_react.default.createElement("div", {
-    className: "intro"
-  }, /*#__PURE__*/_react.default.createElement("p", {
-    className: "sub-header"
-  }, "Whether you're going through hard times, need an extra push to get stuff done, or like sharing inspirational quotes, we have you covered."), /*#__PURE__*/_react.default.createElement("button", {
-    onClick: getQuote
-  }, "Get Your Daily Motivation")))));
+  }, "Sign out")));
 }
 },{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","react":"../node_modules/react/index.js","./utils":"utils.js","./global.css":"global.css","./config":"config.js"}],"index.js":[function(require,module,exports) {
 "use strict";
@@ -47136,7 +47111,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59045" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60899" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
