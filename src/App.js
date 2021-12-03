@@ -46,7 +46,8 @@ export default function App() {
     },
   ]
 
-  // Add getQuote
+  // Add getQuote function
+
 
   // The useEffect hook can be used to fire side-effects during render
   // Learn more: https://reactjs.org/docs/hooks-intro.html
@@ -105,7 +106,9 @@ export default function App() {
           Sign out
         </button>
 
-        {/* Add  Quote */}
+        {/* Add  Quote to be display*/}
+        
+
       </div>
     </div>
   )
